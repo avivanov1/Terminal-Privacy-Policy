@@ -1,11 +1,11 @@
 # Terminal Privacy Policy
 
-_Last updated: April 10, 2026_
+_Last updated: April 17, 2026_
 
 Terminal ("we", "us", "the app") is a mobile application that helps
-travelers see real-time airport queue wait times, browse lounges, and
-look up flight information. This policy explains what data we collect,
-how we use it, and the choices you have.
+travelers see real-time airport queue wait times and browse lounges.
+This policy explains what data we collect, how we use it, and the
+choices you have.
 
 ## Plain-language summary
 
@@ -17,14 +17,13 @@ how we use it, and the choices you have.
 - Queue reports you submit (e.g. "I waited 10 minutes at Security
   T4") are uploaded **anonymously** and tagged with a random device
   ID generated on first launch. Wiping the app erases the ID.
-- We use **Supabase** to store anonymous queue data, **MapLibre** and
-  **OpenFreeMap** (OpenStreetMap tiles) to render the map, and
-  **AirLabs** to look up flight information when you enter a flight
-  number. No other third parties receive your data.
-- If you subscribe to Pro, the purchase is handled by
-  **Google Play Billing**. We never see your payment details.
-- You can request deletion of any data tied to your device ID by
-  emailing us (see below).
+- We use **Supabase** to store anonymous queue data and
+  **OpenStreetMap** to render map tiles. No other third parties
+  receive your data.
+- The app is free. There are no subscriptions, in-app purchases, or
+  advertising.
+- You can delete all data tied to your device ID at any time from
+  inside the app (Settings → Delete my data) or by emailing us.
 
 ## What we collect
 
@@ -32,9 +31,8 @@ how we use it, and the choices you have.
 |------|---------|----------------|---------------|
 | GPS coordinates | Show your position, detect airport, match slowdowns to queue zones | While the app is in the foreground | Not stored on our servers; used in-memory only |
 | Queue reports (label + timestamps + GPS) | Crowd-sourced wait times for other travelers | When you label a detected slowdown | Supabase `reports` table, tagged with anonymous device ID |
-| Feedback messages + ratings | Improve the app | When you submit via the Contribute tab | Supabase `feedback` table, tagged with anonymous device ID |
+| Feedback messages + ratings | Improve the app | When you submit via the Settings tab | Supabase `feedback` table, tagged with anonymous device ID |
 | Device ID (random UUID) | Attribute reports without identifying you | Generated on first launch | AsyncStorage (on your device) + Supabase |
-| Flight number you type | Look up gate/terminal info | When you use the Flight tab | Sent to AirLabs API; not stored by us |
 | Diagnostic info with feedback | Debug user-reported issues | When you submit feedback | Supabase `feedback.message` column (app version, platform, and the last 50 console log lines) |
 | Notification preferences | Remember which alerts you want | When you toggle settings | AsyncStorage (on your device) |
 
@@ -46,6 +44,7 @@ We do **not** collect:
 - Precise background location (we only access location while the app
   is in the foreground)
 - Any cross-app tracking data
+- Payment information (the app is free with no in-app purchases)
 
 ## How your data is used
 
@@ -68,19 +67,9 @@ We share the minimum necessary data with the following services:
 
 - **Supabase** (database hosting) — stores anonymous queue reports,
   feedback, and zone data. <https://supabase.com/privacy>
-- **MapLibre GL** (map rendering, open source) — renders the map
-  locally on your device. No data is sent to MapLibre.
-  <https://maplibre.org>
-- **OpenFreeMap** (map tiles) — serves OpenStreetMap vector tiles to
-  display the map. Your device requests tiles by geographic area;
-  no personal data is transmitted. <https://openfreemap.org>
-- **AirLabs** (flight data API) — receives the flight number you type
-  to return gate and terminal info. <https://airlabs.co/terms>
-- **RevenueCat** (subscription management, only if you buy Pro) —
-  mediates the purchase via Google Play Billing. We never see card
-  details. <https://www.revenuecat.com/privacy>
-- **Google Play Billing** (payment processing, only if you buy Pro) —
-  handles the transaction. <https://policies.google.com/privacy>
+- **OpenStreetMap** (map tiles) — serves map tiles to display the
+  map. Your device requests tiles by geographic area; no personal
+  data is transmitted. <https://www.openstreetmap.org/copyright>
 
 We do **not** sell your data, and we do not share it with advertisers.
 
@@ -90,11 +79,13 @@ We do **not** sell your data, and we do not share it with advertisers.
   airports and view queue data without contributing reports.
 - **Deny notifications**: you can still use every feature; alerts
   won't fire.
-- **Turn off data sharing**: in the Contribute tab, toggle "Share my
+- **Turn off data sharing**: in the Settings tab, toggle "Share my
   position" off. We stop uploading any new reports from your device.
-- **Delete your data**: email us your device ID (shown in the
+- **Delete your data**: in the Settings tab, tap "Delete my data".
+  This removes all rows tied to your device ID from our servers
+  immediately. Alternatively, email us your device ID (shown in the
   diagnostic info section of a feedback submission) and we will
-  delete all rows associated with it within 30 days.
+  delete it within 30 days.
 - **Uninstall**: wipes your device ID and all local preferences.
 
 ## Children's privacy
